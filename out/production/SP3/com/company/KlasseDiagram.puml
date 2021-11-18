@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Tournament {
+tournamentId: int
+name: String
+players: String Array
+teams: String Array
+addTeam()
+addPlayer()
+}
+class Players {
+id: int
+name: String
+teamId: int
+}
+class Games {
+date: String
+score: int
+winner: String
+}
+class Teams {
+id: int
+name: String
+nrOfPlayers: int
+goalScore: int
+wins: int
+losses: int
+pickTeams()
+changeStanding()
+}
+class IO {
+numberOfTeams: int
+loadPlayersAndTeams()
+}
+class UI {
+playerName: String
+teamName: String
+addPlayer()
+addTeam()
+removePlayer()
+removeTeam()
+}
+class DBConnector {
+}
+class FileReader {
+}
+
+Tournament "1"-down-"2..*" Teams
+Tournament "1"-down-"4..*" Players
+Teams "1"-left-"2..*" Players : \t
+Games "1"-down-"2" Teams
+Tournament "1"-right-"1..*" Games : \t
+Tournament "1"-up-"1" UI
+UI "1"-right-"1" IO : \t
+IO "1"-right-"1" DBConnector : \t
+IO "1"-up-"1" FileReader
+
+@enduml

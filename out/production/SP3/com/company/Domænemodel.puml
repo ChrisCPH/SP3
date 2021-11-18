@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+object Teams
+object Players
+object Tournament
+object TournamentAdmin
+object Results
+object Games
+object Dates
+object KnockoutTournament
+object GroupTournament
+object Score
+object Standing
+object Quarterfinals
+object Semifinals
+object Grandfinal
+
+
+
+Players -down-o Teams
+Teams -down-o Tournament
+TournamentAdmin -left-o Tournament
+Tournament -down-o GroupTournament
+Tournament -down-o KnockoutTournament
+KnockoutTournament -down-o Quarterfinals
+GroupTournament -down-o Quarterfinals
+Quarterfinals -down-o Semifinals
+Semifinals -down-o Grandfinal
+Results -left-o TournamentAdmin
+Dates -down-o Tournament
+Score -right-o TournamentAdmin
+Score -right-o Games
+Standing o-down- TournamentAdmin
+Standing --o Teams
+Games -right-o Tournament
+
+
+@enduml
